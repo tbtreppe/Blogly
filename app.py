@@ -15,24 +15,56 @@ debug = DebugToolbarExtension(app)
 connect_db(app)
 db.create_all()
 
+@app.route('/')
+def root():
+    return redirect("/user")
+
 @app.route('/user')
 def list_users():
     user = User.query.all()
-    return render_template('new_user.html', user=user)
+    return render_template('user.html', user=user)
+
+@app.route('/new_user', methods=["GET"])
+def show_new_user_form():
+    return render_template('new_user.html')
 
 @app.route('/new_user', methods=["POST"])
 def add_new_user():
-    firstname = request.form["First Name"]
-    lastname = request.form["Last Name"]
-    imageurl = request.form ["Image URL"]
+    new_user = User(
+        first_name=request.form['first_name'],
+        last_name=request.form['last_name'],
+        image_url=request.form['image_url'] or None)
 
-    new_user = User(firstname=firstname, lastname=lastname, imageurl=imageurl)
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect (f'/{new_user.id}')
+    return redirect ('/user')
 
-@app.route("/int:user_id")
-def show_user(user_id):
+@app.route('/user/<int:user_id>')
+def show_user_details(user_id):
     user = User.query.get_or_404(user_id)
-    return render_template("details.html", user=user)
+    return render_template('detail.html', user=user)
+
+@app.route('/user/<int:user_id>/edit', methods=["POST"])
+def edit_user():
+    user = User.query.get_or_404(user_id)
+    user.first_name = request.form['first_name']
+    user.last_name = request.form['last_name']
+    user.image_url = request.form['image_url']
+
+    db.session.add(user)
+    db.session.commit()
+
+    return redirect("/user")
+
+@app.route('/user/<int:user_id>/delete', methods=["POST"])
+def delete_user(user_id):
+   
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+
+    return redirect("/user")
+
+    
+
