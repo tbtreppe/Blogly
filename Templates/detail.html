@@ -11,4 +11,14 @@ content %}
   </button>
 </form>
 
+<h2>Posts</h2>
+<ul>
+  {% for post in post %}
+  <li>
+    <a href="/post/{{post.id}}">{{ post.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+<button><a href="/new_post">Add Post</a></button>
+
 {% endblock %}
