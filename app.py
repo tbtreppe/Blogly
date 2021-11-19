@@ -45,7 +45,11 @@ def show_user_details(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('detail.html', user=user)
 
-@app.route('/user/<int:user_id>/edit', methods=["POST"])
+@app.route('/edit', methods=["GET"])
+def show_edit_form():
+    return render_template('edit.html')
+
+@app.route('/edit', methods=["POST"])
 def edit_user():
     user = User.query.get_or_404(user_id)
     user.first_name = request.form['first_name']
@@ -55,6 +59,10 @@ def edit_user():
     db.session.add(user)
     db.session.commit()
 
+    return redirect("/user")
+
+@app.route('/edit/Save', methods=["POST"])
+def save_edit_user():
     return redirect("/user")
 
 @app.route('/user/<int:user_id>/delete', methods=["POST"])

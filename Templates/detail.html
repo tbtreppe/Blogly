@@ -5,8 +5,8 @@ content %}
 <img src="{{user.image_url}}" />
 {% endif %}
 <form>
-  <button form action="/user/{{ user.id }}/edit" formmethod="GET">Edit</button>
-  <button form action="/user/{{ user.id }}/delete" formmethod="POST">
+  <button><a href="/edit">Edit</a></button>
+  <button formaction="/user/{{ user.id }}/delete" formmethod="POST">
     Delete
   </button>
 </form>
@@ -19,6 +19,6 @@ content %}
   </li>
   {% endfor %}
 </ul>
-<button><a href="/new_post">Add Post</a></button>
+<p><a href="/new_post">Add Post</a></p>
 
 {% endblock %}
