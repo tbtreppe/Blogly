@@ -96,7 +96,7 @@ def add_new_post(user_id):
 
 @app.route('/post/<int:post_id>')
 def show_post_details(post_id):
-    post = Post.query.get_or_404(user_id)
+    post = Post.query.get_or_404(post_id)
     return render_template('post_detail.html', post=post)
 
 @app.route('/post/<int:post_id>/edit')

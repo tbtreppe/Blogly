@@ -1,12 +1,10 @@
 {% extends 'base.html' %} {% block title %}Post Details{% endblock %} {% block
 content %}
 <h1>{{post.id}} Post</h1>
-{% for post in post %}
 <p>{{ post.content }}</p>
 <p>
   <small>By {{ post.user.first_name }} {{ post.user.last_name }}</small>
 </p>
-{% endfor %}
 <form>
   <button form action="/post/{{ post.id }}/edit" formmethod="GET">Edit</button>
   <button form action="/post/{{ post.id }}/delete" formmethod="POST">
