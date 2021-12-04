@@ -116,6 +116,7 @@ def edit_post(post_id):
 
     db.session.add(post)
     db.session.commit()
+    user_id = post.user.id
 
     return redirect(f"/user/{user_id}")
 
