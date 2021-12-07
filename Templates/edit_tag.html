@@ -1,11 +1,12 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Edit a tag</h1>
 <form action="/tag/{{ tag.id }}/edit" method="POST">
-  <input type="text" name="Name" placeholder="Enter a name for the tag" />
+  <input type="text" name="name" placeholder="Enter a name for the tag" />
   {% for post in post %}
   <input
     type="checkbox"
     name="post"
+    value="{{ post.id }}"
     {%
     if
     post
@@ -17,9 +18,9 @@
     endif
     %}
   />
-  {% endfor %}
+  {{ post.title }} {% endfor %}
   <button>Save</button>
-  <button><a href="/tag/{{ tag.user_id }}">Cancel</a></button>
+  <button><a href="/tag">Cancel</a></button>
 </form>
 
 {% endblock %}

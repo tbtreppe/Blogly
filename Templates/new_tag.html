@@ -8,8 +8,9 @@ content %}
     placeholder="Enter a name
   for the tag"
   />
-  {% for post in post %} <input type="checkbox" name="post" />{{ post.title }}
-  {% endfor %}
+  {% for post in post %}
+  <input type="checkbox" name="post" value="{{ post.id }}" />{{ post.title }} {%
+  endfor %}
   <button><a href="/user">Cancel</a></button>
   <button>Add</button>
 </form>

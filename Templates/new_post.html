@@ -5,6 +5,10 @@ content %}
   <input type="text" name="title" placeholder="Enter a title" />
   <input type="text" name="content" placeholder="Enter your content" />
   <button><a href="/user/{{ user.id }}">Cancel</a></button>
+
+  {% for tag in tag %}
+  <input type="checkbox" name="tag" value="{{ tag.id }}" />{{ tag.name }} {%
+  endfor %}
   <button>Add</button>
 </form>
 

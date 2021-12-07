@@ -11,7 +11,9 @@ content %}
   <button formaction="/post/{{ post.id }}/delete" formmethod="POST">
     Delete
   </button>
-  <button><a href="/user/{{ post.user_id }}"> Cancel</a></button>
+  <button>
+    <a href="/user/{{ post.user_id }}"> Go back to User Details</a>
+  </button>
 </form>
 {% if post.tag %}
 <p>

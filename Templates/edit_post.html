@@ -3,6 +3,10 @@
 <form action="/post/{{ post.id }}/edit" method="POST">
   <input type="text" name="title" placeholder="Enter a title" />
   <input type="text" name="content" placeholder="Enter your content" />
+
+  {% for tag in tag %}
+  <input type="checkbox" name="tag" value="{{ tag.id }}" />{{ tag.name }} {%
+  endfor %}
   <button>Save</button>
   <button><a href="/user/{{ post.user_id }}">Cancel</a></button>
 </form>
