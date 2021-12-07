@@ -82,8 +82,8 @@ def show_new_post_form(user_id):
 @app.route('/user/<int:user_id>/new_post', methods=["POST"])
 def add_new_post(user_id):
     user = User.query.get_or_404(user_id)
-    tag_id = [int(num) for num in request.form.getlist("tag")]
-    tag = Tag.query.filter(Tag.id.in_(tag_id)).all()
+    tag_ids = [int(num) for num in request.form.getlist("tag")]
+    tag = Tag.query.filter(Tag.id.in_(tag_ids)).all()
 
     new_post = Post(
         title=request.form['title'],
@@ -111,8 +111,8 @@ def edit_post(post_id):
     post = Post.query.get_or_404(post_id)
     post.title = request.form['title']
     post.content = request.form['content']
-    tag_id = [int(num) for num in request.form.getlist("tag")]
-    post.tag = Tag.query.filter(Tag.id.in_(tag_id)).all()
+    tag_ids = [int(num) for num in request.form.getlist("tag")]
+    post.tag = Tag.query.filter(Tag.id.in_(tag_ids)).all()
 
     db.session.add(post)
     db.session.commit()
@@ -134,17 +134,17 @@ def delete_post(post_id):
 @app.route('/tag')
 def tag():
     tag = Tag.query.all()
-    return render_template('new_tag.html', tag=tag)
+    return render_template('tag.html', tag=tag)
 
 @app.route('/new_tag')
 def new_tag_form():
     post = Post.query.all()
     return render_template('new_tag.html', post=post)
 
-@app.route('/new_tag')
+@app.route('/new_tag', methods=["POST"])
 def new_tag():
-    post_id = [int(num) for num in request.form.getlist("post")]
-    post = Post.query.filter(Post.id.in_(post_id)).all()
+    post_ids = [int(num) for num in request.form.getlist("post")]
+    post = Post.query.filter(Post.id.in_(post_ids)).all()
     new_tag = Tag(name=request.form['name'], post=post)
 
     db.session.add(new_tag)
@@ -158,17 +158,17 @@ def show_tag(tag_id):
     return render_template('show_tag.html', tag=tag)
 
 @app.route('/tag/<int:tag_id>/edit')
-def edit_tag_form():
+def edit_tag_form(tag_id):
     tag = Tag.query.get_or_404(tag_id)
     post = Post.query.all()
     return render_template('edit_tag.html', tag=tag, post=post)
 
 @app.route('/tag/<int:tag_id>/edit', methods=["POST"])
 def edit_tag(tag_id):
-    tag=Tag.query.get_or_404(tag_id)
+    tag = Tag.query.get_or_404(tag_id)
     tag.name = request.form['name']
-    post_id = [int(num) for num in request.form.getlist("post")]
-    tag.post = Post.query.filter(Post.id.in_(post_id)).all()
+    post_ids = [int(num) for num in request.form.getlist("post")]
+    tag.post = Post.query.filter(Post.id.in_(post_ids)).all()
 
     db.session.add(tag)
     db.session.commit()
