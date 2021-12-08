@@ -10,4 +10,4 @@ To view the app please complete the following steps:
 - install all the necessary requirements with pip3 install -r requirements.txt
 - in your terminal type createdb blogly
 - LASTLY type flask run to start your local server on port 5000
-  visit localhost:5000/ where you can add users, posts and tags.
+- visit localhost:5000/ where you can add users, posts and tags.
