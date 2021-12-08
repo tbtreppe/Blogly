@@ -15,7 +15,7 @@ debug = DebugToolbarExtension(app)
 connect_db(app)
 db.create_all()
 
-"""Homepage""""
+"""Homepage"""
 @app.route('/')
 def root():
     return redirect("/user")
