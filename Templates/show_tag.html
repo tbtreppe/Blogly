@@ -9,10 +9,20 @@ content%}
   {% endfor %}
 </ul>
 <form>
-  <button formaction="/tag/{{ tag.id }}/edit" formmethod="GET">Edit</button>
-  <button formaction="/tag/{{ tag.id }}/delete" formmethod="POST">
+  <button
+    formaction="/tag/{{ tag.id }}/edit"
+    formmethod="GET"
+    class="btn btn-primary btn sm"
+  >
+    Edit
+  </button>
+  <button
+    formaction="/tag/{{ tag.id }}/delete"
+    formmethod="POST"
+    class="btn btn-danger btn-sm"
+  >
     Delete
   </button>
-  <button><a href="/user">Go back to User Page</a></button>
+  <a href="/user" class="btn btn-info btn-sm">Go back to User Page</a>
 </form>
 {% endblock %}

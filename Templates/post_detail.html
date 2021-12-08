@@ -7,18 +7,30 @@ content %}
 </p>
 
 <form>
-  <button formaction="/post/{{ post.id }}/edit" formmethod="GET">Edit</button>
-  <button formaction="/post/{{ post.id }}/delete" formmethod="POST">
+  <button
+    formaction="/post/{{ post.id }}/edit"
+    formmethod="GET"
+    class="btn btn-primary btn-sm"
+  >
+    Edit
+  </button>
+  <button
+    formaction="/post/{{ post.id }}/delete"
+    formmethod="POST"
+    class="btn btn-danger btn-sm"
+  >
     Delete
   </button>
-  <button>
-    <a href="/user/{{ post.user_id }}"> Go back to User Details</a>
+ 
+    <a href="/user/{{ post.user_id }}" class="btn btn-info btn-sm">
+      Go back to User Details</a
+    >
   </button>
 </form>
 {% if post.tag %}
 <p>
   Tags: {% for tag in post.tag %}
-  <a href="/tag/{{tag.id}}">{{tag.name}}</a>
+  <a href="/tag/{{tag.id}}" class="btn btn-success btn-sm">{{tag.name}}</a>
   {% endfor %}
 </p>
 {% endif %} {% endblock %}

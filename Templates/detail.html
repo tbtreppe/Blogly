@@ -5,11 +5,21 @@ content %}
 <img src="{{user.image_url}}" />
 {% endif %}
 <form>
-  <button formaction="/user/{{ user.id }}/edit" formmethod="GET">Edit</button>
-  <button formaction="/user/{{ user.id }}/delete" formmethod="POST">
+  <button
+    formaction="/user/{{ user.id }}/edit"
+    formmethod="GET"
+    class="btn btn-primary btn-sm"
+  >
+    Edit
+  </button>
+  <button
+    formaction="/user/{{ user.id }}/delete"
+    formmethod="POST"
+    class="btn btn-danger btn-sm"
+  >
     Delete
   </button>
-  <button><a href="/user">Go Back to User Page</a></button>
+  <a href="/user" class="btn btn-info btn-sm">Go Back to User Page</a>
 </form>
 
 <h2>Posts</h2>
@@ -20,6 +30,10 @@ content %}
   </li>
   {% endfor %}
 </ul>
-<p><a href="/user/{{ user.id }}/new_post">Add Post</a></p>
+<p>
+  <a href="/user/{{ user.id }}/new_post" class="btn btn-success btn-sm"
+    >Add Post</a
+  >
+</p>
 
 {% endblock %}
